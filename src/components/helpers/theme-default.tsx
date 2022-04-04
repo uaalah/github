@@ -3,12 +3,13 @@ import { createTheme } from '@mui/material/styles'
 const properties = {
     primary: '#61DAFC',
     secondary: '#282c34',
-    background_primary: '#a5d9e7',
-    background_secondary: '#9aa6be',
+    background_primary: '#b4dbe6',
+    background_secondary: '#a7b3ca',
+    primary_dark: '#2b6170',
     text: '#737373',
     borderRadius: {
         buttons: '6px',
-        chips: '3px'
+        chips: '10px'
     }
 }
 const themeDefault = createTheme({
@@ -18,13 +19,20 @@ const themeDefault = createTheme({
             color: properties.primary,
             fontWeight: 300,
             fontSize: '5rem'
+        },
+        h2: {
+            color: properties.primary,
+            fontWeight: 700,
+            fontSize: '1.5rem',
+            textTransform: 'uppercase'
         }
     },
     palette: {
         primary: {
             main: properties.primary,
             light: properties.background_primary,
-            contrastText: 'white'
+            dark: properties.primary_dark,
+            contrastText: 'white',
         },
         secondary: {
             main: properties.secondary,
@@ -48,26 +56,6 @@ const themeDefault = createTheme({
             },
             styleOverrides: {
                 root: {}
-            }
-        },
-        MuiTypography: {
-            styleOverrides: {
-                h2: ({ ownerState, theme }) => ({
-                    ...(ownerState && {}),
-                    [`& span`]: {
-                        display: 'block',
-                        color: '#000'
-                    }
-                }),
-                h5: ({ ownerState }) => ({
-                    ...(ownerState && {
-                        lineHeight: '1em'
-                    }),
-                    [`& span`]: {
-                        display: 'block',
-                        color: '#000'
-                    }
-                })
             }
         },
         MuiButton: {
@@ -97,11 +85,10 @@ const themeDefault = createTheme({
             styleOverrides: {
                 root: ({ ownerState, theme }) => ({
                     ...(ownerState && {
-                        fontWeight: 400,
-                        fontSize: '.75rem',
+                        fontWeight: 600,
+                        fontSize: '.875rem',
                         textTransform: 'uppercase',
                         color: properties.primary,
-                        border: `1px solid ${properties.primary}`,
                         borderRadius: properties.borderRadius.chips,
                         padding: '2px',
                         height: '28px'
