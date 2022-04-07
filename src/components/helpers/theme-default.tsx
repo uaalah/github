@@ -49,34 +49,6 @@ const themeDefault = createTheme({
                 underline: 'none'
             }
         },
-        MuiAppBar: {
-            defaultProps: {
-                elevation: 0,
-                position: 'fixed'
-            },
-            styleOverrides: {
-                root: {}
-            }
-        },
-        MuiButton: {
-            defaultProps: {
-                variant: 'contained',
-                disableElevation: true
-            },
-            styleOverrides: {
-                root: ({ ownerState, theme }) => ({
-                    ...(ownerState && {
-                        padding: [theme.spacing(1), theme.spacing(4)].join(' '),
-                        borderRadius: properties.borderRadius.buttons
-                    })
-                }),
-                sizeSmall: ({ ownerState, theme }) => ({
-                    ...(ownerState && {
-                        fontWeight: 400
-                    })
-                })
-            }
-        },
         MuiChip: {
             defaultProps: {
                 variant: 'filled',

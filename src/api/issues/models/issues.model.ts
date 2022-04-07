@@ -1,4 +1,4 @@
-// QUERY
+// QUERY (DATA RECEIVED)
 
 export interface IGetIssues {
   search: {

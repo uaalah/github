@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { ApolloError, useQuery } from '@apollo/client';
-import { GET_ISSUES } from '../services/apiService';
-import { IGetIssues, IGetIssuesVars, IIssueList } from '../models/issues.model';
-import { getIssues } from '../controllers/issues.controller';
+import { IGetIssues, IGetIssuesVars, IIssueList } from '../api/issues/models/issues.model';
+import { getIssues } from '../api/issues/controllers/issues.controller';
+import { GET_ISSUES } from '../api/issues/services/issues.services';
+
 
 const useFetchData: (issuesQuery: string) => ({ loading: boolean, error: ApolloError | undefined, result: IIssueList | undefined }) = (issuesQuery) => {
   const [result, setResult] = useState<IIssueList | undefined>(undefined)
@@ -10,8 +11,8 @@ const useFetchData: (issuesQuery: string) => ({ loading: boolean, error: ApolloE
     variables: {
       query: issuesQuery
     },
-    fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first"
+    fetchPolicy: "cache-first",
+    nextFetchPolicy: "cache-only"
   })
 
   useEffect(() => {

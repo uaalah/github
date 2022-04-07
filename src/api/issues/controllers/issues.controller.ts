@@ -1,6 +1,7 @@
 import { IGetIssuesSearchIssue, IGetIssuesSearchIssueLabel, IIssueItemList, ILabel } from "../models/issues.model";
 
 
+
 const getLabels: (nodes: IGetIssuesSearchIssueLabel[]) => ILabel[] = (nodes) => {
     const labelList: ILabel[] = [];
     nodes.map(node => {
@@ -8,7 +9,7 @@ const getLabels: (nodes: IGetIssuesSearchIssueLabel[]) => ILabel[] = (nodes) => 
         color: node.color,
         name: node.name,
       }
-      labelList.push(el)
+      return labelList.push(el)
     })
     return labelList
 
@@ -24,19 +25,24 @@ export const getIssues: (nodes: IGetIssuesSearchIssue[]) => IIssueItemList[] = (
       title: node.title,
       labels: getLabels(node.labels.nodes)
     }
-    issuesList.push(el);
+    return issuesList.push(el);
   })
   return issuesList
 }
 
-interface IContrast {
-  ratio: string;
-  AA: string;
-  AALarge: string;
-  AAA: string;
-  AAALarge: string;
+
+// TODO : LABEL TEXT COLOR
+// interface IContrast {
+//   ratio: string;
+//   AA: string;
+//   AALarge: string;
+//   AAA: string;
+//   AAALarge: string;
+// }
+export const checkContrast: (fcolor: string, bcolor: string) => Promise<boolean> = async (fcolor, bcolor) => {
+  const url = `https://webaim.org/resources/contrastchecker/?fcolor=${fcolor}&bcolor=${bcolor}&api`;
+  const resp = await fetch(url);
+  const { ratio } = await resp.json();
+  return Number(ratio) >= 4
 }
-export const checkContrast: (fcolor: string, bcolor: string) => boolean = (fcolor, bcolor) => {
-  const contrast:IContrast = JSON.parse(`https://webaim.org/resources/contrastchecker/?fcolor=${fcolor}&bcolor=${bcolor}&api`)
-  return Number(contrast.ratio) >= 4.5;
-}
+

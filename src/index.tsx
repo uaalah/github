@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // @ts-ignore
 //import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import githubStore from './redux';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={githubStore}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

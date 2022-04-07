@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { Box, Card, Typography } from '@mui/material';
-import { IIssueList } from '../../models/issues.model';
+import { Card, Typography } from '@mui/material';
+import { IIssueList } from '../../api/issues/models/issues.model';
 import IssuesListItem from './IssuesListItem';
 
 const IssuesList: FC<IIssueList> = (props) => {
